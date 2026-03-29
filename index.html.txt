@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0f0f0f, #2c2c2c);
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    margin-top: 12%;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 45px;
+    color: #ff4d6d;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #ff4d6d; }
+    to { text-shadow: 0 0 20px #ff99aa; }
+}
+
+p {
+    font-size: 20px;
+    width: 70%;
+    margin: auto;
+    margin-top: 20px;
+    line-height: 1.7;
+}
+
+button {
+    margin: 15px;
+    padding: 12px 25px;
+    border: none;
+    background: #ff4d6d;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ff1e4d;
+    transform: scale(1.05);
+}
+
+/* Floating Hearts */
+.heart {
+    position: absolute;
+    color: #ff4d6d;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Hey...</h1>
+    <p id="message"></p>
+
+    <button onclick="playMusic()">🎶 Play for you</button>
+    <button onclick="forgive()">💌 Forgive Me?</button>
+</div>
+
+<!-- AUDIO -->
+<audio id="song" src="song.mp3"></audio>
+
+<script>
+// Typing message
+let text = "I know you're angry with me... and I truly deserve it. But I never wanted to hurt you. You mean so much to me... more than I can explain. I'm really sorry. If you can, please give me one chance to fix everything.";
+
+let i = 0;
+function typing() {
+    if (i < text.length) {
+        document.getElementById("message").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 35);
+    }
+}
+typing();
+
+// Play music
+function playMusic() {
+    document.getElementById("song").play();
+}
+
+// Forgive popup
+function forgive() {
+    alert("Thank you... this means everything to me ❤️");
+}
+
+// Floating hearts
+function createHeart() {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
